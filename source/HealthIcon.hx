@@ -55,8 +55,8 @@ class HealthIcon extends FlxSprite
 			initialWidth = iconAsset.width;
 			initialHeight = iconAsset.height;
 			loadGraphic(iconAsset, true, Math.floor(iconAsset.width / iSize), Math.floor(iconAsset.height));
-			iconOffsets[0] = (width - 150) / iSize;
-			iconOffsets[1] = (height - 150) / iSize;
+			iconOffsets[0] = (width - height) / iSize;
+			iconOffsets[1] = 0;
 			animation.add(char, [for(i in 0...frames.frames.length) i], 0, false, isPlayer);
 
 			// animation.add(char, [for(i in 0...frames.frames.length) i], 0, false, isPlayer);
@@ -92,7 +92,7 @@ class HealthIcon extends FlxSprite
 			offset.y = iconOffsets[1];
 		} else {
 			super.updateHitbox();
-			if (initialWidth != (150 * animation.numFrames) || initialHeight != 150) //Fixes weird icon offsets when they're HUMONGUS (sussy)
+			if (initialWidth != (height * animation.numFrames) || initialHeight != height) // if your width isnt a multiple of your height, FUCK YOU NO OFFSET CORRECTION
 			{
 				offset.x = iconOffsets[0];
 				offset.y = iconOffsets[1];
